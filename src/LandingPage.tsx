@@ -98,7 +98,6 @@ export default function LandingPage() {
   const deliveryCharge = 0;
   const subtotal = orderForm.quantity * offerPrice;
   const totalAmount = subtotal + deliveryCharge;
-  const totalSavings = (orderForm.quantity * regularPrice) - subtotal;
 
   const scrollToSection = (id: string) => {
     setMobileMenuOpen(false);
