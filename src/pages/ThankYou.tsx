@@ -29,7 +29,7 @@ export const ThankYou: React.FC = () => {
   } | null;
 
   const [fallbackOrderNumber] = useState(
-    () => `SH-${Math.floor(10000 + Math.random() * 90000)}`,
+    () => `Q10-${Math.floor(10000 + Math.random() * 90000)}`,
   );
   const orderNumber = state?.orderNumber || fallbackOrderNumber;
 
@@ -54,7 +54,7 @@ export const ThankYou: React.FC = () => {
     if (typeof window !== "undefined" && typeof (window as any).fbq === "function") {
       (window as any).fbq("track", "Purchase", {
         content_name: PRODUCT_INFO.name,
-        content_ids: ["charles_delon_watch"],
+        content_ids: ["q10_hifi_earbuds"],
         content_type: "product",
         value: grandTotal,
         currency: "BDT",
@@ -200,15 +200,9 @@ export const ThankYou: React.FC = () => {
                 </span>
               </div>
               <div className="flex justify-between items-center gap-2 text-slate-600">
-                <span>
-                  ডেলিভারি চার্জ (
-                  {isOutside
-                    ? "ঢাকার বাইরে"
-                    : "ঢাকা ভেতরে"}
-                  ):
-                </span>
-                <span className="font-semibold text-slate-900 shrink-0 font-number">
-                  ৳{toBanglaNumber(deliveryFee)}
+                <span>ডেলিভারি চার্জ:</span>
+                <span className="font-bold text-emerald-600 shrink-0 font-number">
+                  {deliveryFee === 0 ? "ফ্রি (৳০)" : `৳${toBanglaNumber(deliveryFee)}`}
                 </span>
               </div>
               <div className="flex justify-between items-center gap-2 text-slate-600">

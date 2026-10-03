@@ -1,17 +1,16 @@
-import blackWatchImg from '../assets/blackwatch.webp';
-import blueWatchImg from '../assets/blue_watch.webp';
-import grayWatchImg from '../assets/gray_watch.webp';
+import blackEarbudsImg from '../assets/black_Earbuds.jpg';
+import whiteEarbudsImg from '../assets/q10_white_earbuds.jpg';
 
 import type { ProductColor } from '../types';
 
 export const PRODUCT_INFO = {
-  name: "Charles Delon Color-Changing Dial Watch",
-  nameBangla: "চার্লস ডেলন কালার চেঞ্জিং ডায়াল ওয়াচ",
-  tagline: "আলো পড়লেই রঙ বদলায়! সাধারণ ঘড়ির ভিড়ে আপনার লুক হোক আলাদা",
-  regularPrice: 1290,
-  basePrice: 890,
-  deliveryDhaka: 70,
-  deliveryOutside: 130,
+  name: "Q10 HiFi Stereo Sports Earbuds",
+  nameBangla: "Q10 হাই-ফাই স্টেরিও স্পোর্টস ইয়ারবাডস",
+  tagline: "এক বক্সে ৪টি ইয়ারবাড! দুই স্টাইলে বদলে নিন আপনার শোনার অভিজ্ঞতা।",
+  regularPrice: 1490,
+  basePrice: 990,
+  deliveryDhaka: 0,
+  deliveryOutside: 0,
 };
 
 export const COLOR_VARIANTS: ProductColor[] = [
@@ -21,23 +20,15 @@ export const COLOR_VARIANTS: ProductColor[] = [
     nameEn: "Black",
     hex: "#0F172A",
     badgeBg: "bg-slate-100 text-slate-800 border-slate-300",
-    image: blackWatchImg,
+    image: blackEarbudsImg,
   },
   {
-    id: "blue",
-    name: "ব্লু (Blue)",
-    nameEn: "Blue",
-    hex: "#2563EB",
-    badgeBg: "bg-sky-100 text-sky-800 border-sky-200",
-    image: blueWatchImg,
-  },
-  {
-    id: "gray",
-    name: "গ্রে (Gray)",
-    nameEn: "Gray",
-    hex: "#64748B",
+    id: "white",
+    name: "হোয়াইট (White)",
+    nameEn: "White",
+    hex: "#F8FAFC",
     badgeBg: "bg-slate-100 text-slate-700 border-slate-200",
-    image: grayWatchImg,
+    image: whiteEarbudsImg,
   },
 ];
 

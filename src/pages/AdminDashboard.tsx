@@ -143,12 +143,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       name: `গ্রাহক ${randomSuffix}`,
       phone: `017${Math.floor(10000000 + Math.random() * 90000000)}`,
       address: "হাউজ ২৫, ধানমন্ডি, ঢাকা",
-      product: "2-in-1 Rechargeable Double Light Torch & Reading Lamp",
-      color: randomSuffix % 2 === 0 ? "ক্ল্যাসিক ব্ল্যাক" : "এমারেল্ড গ্রিন",
+      product: "Q10 HiFi Stereo Sports Earbuds",
+      color: randomSuffix % 2 === 0 ? "ব্ল্যাক (Black)" : "হোয়াইট (White)",
       quantity: 1,
-      price: 720,
+      price: 890,
       shipping_amount: 70,
-      total_amount: 790,
+      total_amount: 960,
       status: "pending",
     };
 
@@ -177,7 +177,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         : total;
     const itemTotal = unitPrice * qty;
 
-    const info = `অর্ডার #${ord.id}\nনাম: ${ord.name}\nফোন: ${ord.phone}\nঠিকানা: ${ord.address}\nপণ্য: ${ord.product || "2-in-1 Torch & Lamp"} (${ord.color || "ক্ল্যাসিক ব্ল্যাক"})\nপরিমাণ: ${qty} টি\nমূল্য: ৳${unitPrice} x ${qty} = ৳${itemTotal}\nডেলিভারি: ৳${shipping}\nসর্বমোট: ৳${total}`;
+    const info = `অর্ডার #${ord.id}\nনাম: ${ord.name}\nফোন: ${ord.phone}\nঠিকানা: ${ord.address}\nপণ্য: ${ord.product || "Q10 HiFi Stereo Sports Earbuds"} (${ord.color || "ব্ল্যাক (Black)"})\nপরিমাণ: ${qty} টি\nমূল্য: ৳${unitPrice} x ${qty} = ৳${itemTotal}\nডেলিভারি: ৳${shipping}\nসর্বমোট: ৳${total}`;
 
     navigator.clipboard.writeText(info);
     setCopiedId(ord.id);

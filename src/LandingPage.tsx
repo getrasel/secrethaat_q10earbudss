@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createSupabaseOrder } from './utils/orderStorage';
-import blackWatchImg from './assets/blackwatch.webp';
-import blueWatchImg from './assets/blue_watch.webp';
-import grayWatchImg from './assets/gray_watch.webp';
-import watchBlackSplashImg from './assets/watch_black.webp';
-import watchBlueSplashImg from './assets/watch_blue.webp';
-import watchColorSplashImg from './assets/watch_color.webp';
+import heroEarbudsImg from './assets/earbuds.jpg';
+import twoPairEarbudsImg from './assets/2jura_earbuds.jpg';
+import blackEarbudsImg from './assets/black_Earbuds.jpg';
+import whiteEarbudsImg from './assets/q10_white_earbuds.jpg';
+import q10EarbudsCaseImg from './assets/q10_earbuds.jpg';
 
 // Icons for modern, polished aesthetic matching reference
 import {
@@ -20,15 +19,15 @@ import {
   LuMapPin,
   LuPlus,
   LuMinus,
-  LuClock,
-  LuPalette,
+  LuBluetooth,
+  LuHeadphones,
+  LuBatteryCharging,
   LuSparkles,
-  LuUsers,
   LuDroplets,
-  LuGift,
   LuEye,
   LuPackageCheck,
-  LuArrowUp
+  LuArrowUp,
+  LuActivity
 } from 'react-icons/lu';
 import { HiBars3, HiXMark } from 'react-icons/hi2';
 import { FaWhatsapp } from 'react-icons/fa6';
@@ -51,7 +50,7 @@ export default function LandingPage() {
   const [showMobileFloatingBar, setShowMobileFloatingBar] = useState(false);
 
   useEffect(() => {
-    document.title = 'Charles Delon Color-Changing Watch | আলো পড়লেই রঙ বদলায়! আপনার লুক হোক আলাদা';
+    document.title = 'Q10 HiFi Stereo Sports Earbuds | এক বক্সে ৪টি ইয়ারবাড (In-Ear ও Ear-Clip)';
 
     // Hash scrolling if landed with #order-form or similar
     if (window.location.hash) {
@@ -94,9 +93,9 @@ export default function LandingPage() {
   }, []);
 
   // Pricing configuration
-  const regularPrice = 1290;
-  const offerPrice = 890;
-  const deliveryCharge = orderForm.deliveryZone === 'dhaka_inside' ? 70 : 130;
+  const regularPrice = 1490;
+  const offerPrice = 990;
+  const deliveryCharge = 0;
   const subtotal = orderForm.quantity * offerPrice;
   const totalAmount = subtotal + deliveryCharge;
   const totalSavings = (orderForm.quantity * regularPrice) - subtotal;
@@ -160,7 +159,7 @@ export default function LandingPage() {
         name: orderForm.name.trim(),
         phone: orderForm.phone.trim(),
         address: orderForm.address.trim(),
-        product: 'Charles Delon Color-Changing Dial Watch',
+        product: 'Q10 HiFi Stereo Sports Earbuds',
         color: orderForm.variant,
         quantity: orderForm.quantity,
         price: offerPrice,
@@ -175,8 +174,8 @@ export default function LandingPage() {
 
       const fallbackId = Math.floor(100000 + Math.random() * 900000);
       const finalOrderId = createdOrder?.id
-        ? `CD-${createdOrder.id}`
-        : `CD-${fallbackId}`;
+        ? `Q10-${createdOrder.id}`
+        : `Q10-${fallbackId}`;
 
       // 2. Navigate to Thank You page with order details for Meta Pixel Purchase tracking
       navigate('/thank-you', {
@@ -197,7 +196,7 @@ export default function LandingPage() {
       });
     } catch (err) {
       console.error('Order submission error:', err);
-      const fallbackId = `CD-${Math.floor(100000 + Math.random() * 900000)}`;
+      const fallbackId = `Q10-${Math.floor(100000 + Math.random() * 900000)}`;
       navigate('/thank-you', {
         state: {
           order: {
@@ -221,24 +220,28 @@ export default function LandingPage() {
 
   const faqItems = [
     {
-      q: '১. ঘড়িটির ডায়াল কি সত্যিই রঙ পরিবর্তন করে?',
-      a: 'আলোর প্রতিফলন ও আলোর পরিবর্তনের কারণে ডায়ালের গ্রেডিয়েন্ট রঙের শেড ভিন্নভাবে দেখা যায়।'
+      q: 'এক বক্সে কয়টি ইয়ারবাড থাকছে?',
+      a: 'একটি চার্জিং কেসের সাথে মোট ৪টি ইয়ারবাড থাকছে—২ জোড়া।'
     },
     {
-      q: '২. এটি কি ছেলে ও মেয়ে উভয়েই ব্যবহার করতে পারবে?',
-      a: 'হ্যাঁ, এর ইউনিসেক্স ডিজাইন পুরুষ ও নারী উভয়ের জন্য উপযোগী।'
+      q: 'দুই ধরনের ইয়ারবাড কী কী?',
+      a: 'এক জোড়া In-Ear এবং অন্য জোড়া Ear-Clip ডিজাইনের।'
     },
     {
-      q: '৩. স্ট্র্যাপটি কেমন?',
-      a: 'স্ট্র্যাপটি নরম রাবার/সিলিকন ধরনের, যা হাতে আরামদায়কভাবে পরা যায়।'
+      q: 'Bluetooth কত?',
+      a: 'Bluetooth 5.4'
     },
     {
-      q: '৪. ঘড়িটি কি পানিতে ব্যবহার করা যায়?',
-      a: 'এটি ওয়াটার রেসিস্ট্যান্ট হওয়ায় হাত ধোয়া বা হালকা বৃষ্টির মতো দৈনন্দিন পরিস্থিতিতে ব্যবহার করা যায়।'
+      q: 'চার্জের অবস্থা কীভাবে দেখব?',
+      a: 'চার্জিং কেসের ডিজিটাল LED ডিসপ্লের মাধ্যমে চার্জের অবস্থা দেখা যায়।'
     },
     {
-      q: '৫. এটি কি উপহার হিসেবে দেওয়া যাবে?',
-      a: 'অবশ্যই। স্টাইলিশ ডিজাইন ও আকর্ষণীয় ডায়ালের কারণে এটি প্রিয়জনকে উপহার দেওয়ার জন্যও সুন্দর একটি পছন্দ।'
+      q: 'পানি থেকে সুরক্ষা আছে?',
+      a: 'IPX4 সুবিধা থাকায় ঘাম ও হালকা পানির ঝাপটা থেকে সুরক্ষার সুবিধা রয়েছে।'
+    },
+    {
+      q: 'ক্যাশ অন ডেলিভারি আছে?',
+      a: 'হ্যাঁ, সারা বাংলাদেশে ক্যাশ অন ডেলিভারি সুবিধা রয়েছে।'
     }
   ];
 
@@ -256,10 +259,10 @@ export default function LandingPage() {
             <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#0284C7] shadow-[0_0_12px_rgba(2,132,199,0.7)] animate-pulse shrink-0" />
             <a href="#" className="flex flex-col text-left group">
               <div className="font-en text-base sm:text-lg font-extrabold tracking-wider text-[#0F172A] group-hover:text-[#0284C7] transition-colors leading-tight">
-                CHARLES DELON
+                Q10 EARBUDS
               </div>
               <span className="text-[11px] sm:text-xs text-[#64748B] font-medium tracking-normal font-bn leading-tight">
-                কালার চেঞ্জিং ডায়াল ঘড়ি
+                হাই-ফাই স্পোর্টস ইয়ারবাডস
               </span>
             </a>
           </div>
@@ -275,8 +278,8 @@ export default function LandingPage() {
             <button onClick={() => scrollToSection('features')} className="hover:text-[#0284C7] transition-colors cursor-pointer">
               ফিচার্স
             </button>
-            <button onClick={() => scrollToSection('gift')} className="hover:text-[#0284C7] transition-colors cursor-pointer">
-              উপহার দিন
+            <button onClick={() => scrollToSection('offer')} className="hover:text-[#0284C7] transition-colors cursor-pointer">
+              স্পেশাল অফার
             </button>
             <button onClick={() => scrollToSection('faq')} className="hover:text-[#0284C7] transition-colors cursor-pointer">
               প্রশ্নোত্তর
@@ -324,8 +327,8 @@ export default function LandingPage() {
             <button onClick={() => scrollToSection('features')} className="block w-full text-left py-2 text-base font-semibold text-[#334155] hover:text-[#0284C7] border-b border-slate-100">
               ফিচার্স
             </button>
-            <button onClick={() => scrollToSection('gift')} className="block w-full text-left py-2 text-base font-semibold text-[#334155] hover:text-[#0284C7] border-b border-slate-100">
-              উপহার দিন
+            <button onClick={() => scrollToSection('offer')} className="block w-full text-left py-2 text-base font-semibold text-[#334155] hover:text-[#0284C7] border-b border-slate-100">
+              স্পেশাল অফার
             </button>
             <button onClick={() => scrollToSection('faq')} className="block w-full text-left py-2 text-base font-semibold text-[#334155] hover:text-[#0284C7]">
               প্রশ্নোত্তর
@@ -353,33 +356,34 @@ export default function LandingPage() {
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 border border-sky-200 w-fit mb-4 md:mb-6 shadow-xs">
                 <span className="w-2 h-2 rounded-full bg-[#0284C7] animate-pulse" />
                 <span className="text-xs uppercase tracking-wider text-[#0284C7] font-bold">
-                  সীমিত স্টক • কালার চেঞ্জিং ডায়াল
+                  সীমিত স্টক • ৪টি ইয়ারবাড ইন ১ বক্স
                 </span>
               </div>
 
               {/* Headline */}
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] xl:text-[2.85rem] font-bold tracking-tight text-[#0F172A] leading-[1.3] mb-4 md:mb-5 font-bn">
-                আলো পড়লেই রঙ বদলায়! <br className="hidden sm:inline" />
+                এক বক্সে ৪টি ইয়ারবাড! <br className="hidden sm:inline" />
                 <span className="bg-gradient-to-r from-[#0284C7] via-[#0EA5E9] to-[#2563EB] bg-clip-text text-transparent">
-                  সাধারণ ঘড়ির ভিড়ে আপনার লুক হোক আলাদা
+                  দুই স্টাইলে বদলে নিন আপনার শোনার অভিজ্ঞতা।
                 </span>
               </h1>
 
               {/* Subtitle */}
               <p className="text-base sm:text-lg md:text-xl text-[#475569] leading-relaxed mb-6 font-normal">
-                সাধারণ ঘড়ির বাইরে, আলোর প্রতিফলনে রঙ বদলানো নজরকাড়া ডায়াল আর স্টাইলিশ ডিজাইনে প্রতিটি মুহূর্তে আপনার লুকে যোগ করবে আলাদা আকর্ষণ।
+                একই চার্জিং কেসে In-Ear ও Ear-Clip—আপনার পছন্দ অনুযায়ী ব্যবহার করুন দুই ধরনের ডিজাইন।
               </p>
 
               {/* Price / Offer Display */}
-              <div className="flex items-baseline gap-3 mb-6">
-                <span className="text-4xl sm:text-5xl font-black text-[#0284C7] font-num tracking-tight">
-                  ৳ ৮৯০
+              <div className="flex flex-wrap items-baseline gap-3 sm:gap-4 mb-6">
+                <span className="text-4xl sm:text-5xl md:text-6xl font-black text-[#0284C7] font-num tracking-tight">
+                  ৳ ৯৯০
                 </span>
                 <span className="text-xl sm:text-2xl text-[#94A3B8] line-through font-num font-semibold">
-                  ৳ ১,২৯০
+                  ৳ ১,৪৯০
                 </span>
-                <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-sky-100 text-[#0284C7] ml-2">
-                  (৳ ৪০০ ছাড়)
+                <span className="text-base sm:text-lg md:text-xl font-extrabold text-emerald-600 flex items-center gap-1.5 tracking-tight animate-pulse">
+                  <LuTruck size={22} className="text-emerald-500 shrink-0" />
+                  <span>ডেলিভারি চার্জ সম্পূর্ণ ফ্রি!</span>
                 </span>
               </div>
 
@@ -390,10 +394,10 @@ export default function LandingPage() {
                   className="flex-1 flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-gradient-to-r from-[#0284C7] to-[#2563EB] text-white font-extrabold text-base sm:text-lg shadow-lg shadow-sky-500/20 hover:shadow-xl hover:shadow-sky-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
                 >
                   <LuShoppingBag size={21} />
-                  <span>এখনই অর্ডার করুন</span>
+                  <span>অর্ডার করতে চাই</span>
                 </button>
                 <a
-                  href="https://wa.me/8801746867350?text=Hello%2C%20I%20want%20to%20order%20Charles%20Delon%20Color-Changing%20Watch"
+                  href="https://wa.me/8801746867350?text=Hello%2C%20I%20want%20to%20order%20Q10%20HiFi%20Stereo%20Sports%20Earbuds"
                   target="_blank"
                   rel="noreferrer"
                   className="flex-1 flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-[#16a34a] hover:bg-[#15803d] text-white font-bold text-base sm:text-lg shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer text-center"
@@ -403,17 +407,24 @@ export default function LandingPage() {
                 </a>
               </div>
 
-              {/* Trust Badges & Supporting Text */}
-              <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs sm:text-sm text-[#475569] font-medium">
+              {/* Supporting Points / Trust Badges */}
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-[#475569] font-medium">
                 <span className="flex items-center gap-1.5 sm:gap-2 text-[#0284C7] font-semibold bg-sky-50 px-2.5 py-1 rounded-lg border border-sky-100">
-                  <LuSparkles size={16} /> ছেলে-মেয়ে সবার জন্য উপযোগী
+                  <LuHeadphones size={16} /> ২ জোড়া ইয়ারবাড
                 </span>
-                <span className="flex items-center gap-1.5 sm:gap-2">
-                  <LuTruck className="text-[#0284C7]" size={18} /> সারা দেশে হোম ডেলিভারি
+                <span className="flex items-center gap-1.5 sm:gap-2 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200">
+                  <LuBluetooth className="text-[#0284C7]" size={16} /> Bluetooth 5.4
                 </span>
-                <span className="flex items-center gap-1.5 sm:gap-2">
-                  <LuShieldCheck className="text-[#0284C7]" size={18} /> ক্যাশ অন ডেলিভারি
+                <span className="flex items-center gap-1.5 sm:gap-2 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200">
+                  <LuBatteryCharging className="text-[#0284C7]" size={16} /> ডিজিটাল LED ডিসপ্লে
                 </span>
+                <span className="flex items-center gap-1.5 sm:gap-2 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200">
+                  <LuDroplets className="text-[#0284C7]" size={16} /> IPX4
+                </span>
+              </div>
+              <div className="mt-3 flex items-center gap-2 text-xs sm:text-sm text-[#64748B]">
+                <LuTruck className="text-[#0284C7]" size={16} />
+                <span>সারা বাংলাদেশে ক্যাশ অন ডেলিভারি</span>
               </div>
             </div>
 
@@ -421,20 +432,20 @@ export default function LandingPage() {
             <div className="lg:col-span-5 relative flex justify-center items-center mt-2 lg:mt-0">
               <div className="relative w-full max-w-md lg:max-w-none rounded-3xl p-3 sm:p-4 bg-white border border-slate-200 shadow-xl group z-10">
                 <img
-                  src={watchBlackSplashImg}
-                  alt="Charles Delon Color-Changing Dial Watch"
+                  src={heroEarbudsImg}
+                  alt="Q10 HiFi Stereo Sports Earbuds - 4 Earbuds in 1 Box"
                   className="w-full h-auto object-cover max-h-[380px] sm:max-h-[440px] md:max-h-[480px] rounded-2xl transition-transform duration-500 group-hover:scale-[1.02]"
                   loading="eager"
                 />
 
                 {/* Floating Feature Tags at Bottom */}
                 <div className="absolute -bottom-3 left-2.5 sm:left-6 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-white border border-sky-200 shadow-lg flex items-center gap-1.5 sm:gap-2 z-20">
-                  <LuPalette size={16} className="text-[#0284C7] shrink-0" />
-                  <span className="text-[11px] sm:text-xs font-semibold text-[#0F172A]">রঙ বদলানো ডায়াল</span>
+                  <LuHeadphones size={16} className="text-[#0284C7] shrink-0" />
+                  <span className="text-[11px] sm:text-xs font-semibold text-[#0F172A]">২ জোড়া ইয়ারবাড</span>
                 </div>
                 <div className="absolute -bottom-3 right-2.5 sm:right-6 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-white border border-sky-200 shadow-lg flex items-center gap-1.5 sm:gap-2 z-20">
-                  <LuDroplets size={16} className="text-[#0284C7] shrink-0" />
-                  <span className="text-[11px] sm:text-xs font-semibold text-[#0284C7]">ওয়াটার রেসিস্ট্যান্ট</span>
+                  <LuActivity size={16} className="text-[#0284C7] shrink-0" />
+                  <span className="text-[11px] sm:text-xs font-semibold text-[#0284C7]">LED ডিসপ্লে & IPX4</span>
                 </div>
               </div>
             </div>
@@ -446,20 +457,22 @@ export default function LandingPage() {
 
 
 
-
       {/* ==================================================
-          4 CORE BENEFITS (4 Cards Grid)
+          PRODUCT INTRO & 4 CORE BENEFITS (4 Cards Grid)
           ================================================== */}
       <section id="benefits" className="py-12 md:py-16 border-t border-slate-200/80 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-          <div className="mb-6 md:mb-8 text-center">
+          <div className="mb-6 md:mb-8 text-center max-w-3xl mx-auto">
             <span className="text-xs tracking-widest text-[#0284C7] uppercase font-bold block mb-3 sm:mb-3.5">
-              মূল বৈশিষ্ট্যসমূহ
+              প্রোডাক্ট পরিচিতি
             </span>
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-[#0F172A] tracking-tight">
-              ৪টি প্রধান সুবিধা
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-[#0F172A] tracking-tight mb-3">
+              এক বক্সে দুই স্টাইলের স্বাধীনতা
             </h2>
+            <p className="text-sm sm:text-base md:text-lg text-[#475569] leading-relaxed font-normal">
+              একই চার্জিং কেসে In-Ear ও Ear-Clip—প্রয়োজন অনুযায়ী বেছে নিন আপনার পছন্দের স্টাইল।
+            </p>
             <div className="small-design-line" />
           </div>
 
@@ -470,10 +483,10 @@ export default function LandingPage() {
                 ০১
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-[#0F172A] mb-2">
-                আলোতে বদলায় রঙ
+                এক বক্সে ৪টি ইয়ারবাড
               </h3>
               <p className="text-[#475569] text-xs sm:text-sm leading-relaxed font-normal">
-                আলোর প্রতিফলনে ডায়ালের গ্রেডিয়েন্ট শেড ভিন্নভাবে ফুটে ওঠে, যা ঘড়িটিকে দেয় আলাদা এক আকর্ষণ।
+                একটি চার্জিং কেসের ভেতরেই থাকছে মোট ৪টি ইয়ারবাড—২ জোড়া, ২ ধরনের ডিজাইন।
               </p>
             </div>
 
@@ -483,10 +496,10 @@ export default function LandingPage() {
                 ০২
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-[#0F172A] mb-2">
-                ওয়াটার প্রুফ
+                দুই ধরনের ডিজাইন
               </h3>
               <p className="text-[#475569] text-xs sm:text-sm leading-relaxed font-normal">
-                হাত ধোয়া, বৃষ্টির পানি কিংবা দৈনন্দিন পানির ছিটা থেকে ঘড়িটিকে রাখে সুরক্ষিত ও নিরাপদ।
+                এক জোড়া In-Ear এবং অন্য জোড়া Ear-Clip—প্রয়োজন অনুযায়ী বেছে নিন।
               </p>
             </div>
 
@@ -496,10 +509,10 @@ export default function LandingPage() {
                 ০৩
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-[#0F172A] mb-2">
-                সব পোশাকের সাথে মানানসই
+                Bluetooth 5.4
               </h3>
               <p className="text-[#475569] text-xs sm:text-sm leading-relaxed font-normal">
-                ক্যাজুয়াল ও ফর্মাল যেকোনো পোশাকের সাথেই নিখুঁতভাবে মানিয়ে যায় এবং ছেলে-মেয়ে উভয়ের জন্য উপযোগী।
+                দ্রুত ও স্থিতিশীল ওয়্যারলেস সংযোগের জন্য রয়েছে Bluetooth 5.4।
               </p>
             </div>
 
@@ -509,10 +522,10 @@ export default function LandingPage() {
                 ০৪
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-[#0F172A] mb-2">
-                সারাদিন আরামদায়ক
+                ডিজিটাল LED ডিসপ্লে
               </h3>
               <p className="text-[#475569] text-xs sm:text-sm leading-relaxed font-normal">
-                নরম রাবার/সিলিকন স্ট্র্যাপ হাতে আরামদায়ক অনুভূতি দেয় এবং দীর্ঘক্ষণ ব্যবহারের জন্য অত্যন্ত সুবিধাজনক।
+                চার্জিং কেসের চার্জের অবস্থা সহজেই দেখে নিতে পারবেন ডিজিটাল ডিসপ্লেতে।
               </p>
             </div>
           </div>
@@ -540,37 +553,27 @@ export default function LandingPage() {
             <div className="small-design-line" />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-5 lg:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 sm:gap-5 lg:gap-6">
             {[
               {
-                src: blackWatchImg,
-                title: 'ব্ল্যাক স্ট্র্যাপ চার্লস ডেলন কালার চেঞ্জিং ডায়াল ওয়াচ',
-                badge: 'ব্ল্যাক স্ট্র্যাপ'
+                src: q10EarbudsCaseImg,
+                title: 'ডিজিটাল স্মার্ট LED ডিসপ্লে চার্জিং কেস ও ইয়ারবাডস',
+                badge: 'LED ডিসপ্লে কেস'
               },
               {
-                src: blueWatchImg,
-                title: 'ব্লু স্ট্র্যাপ চার্লস ডেলন কালার চেঞ্জিং ডায়াল ওয়াচ',
-                badge: 'ব্লু স্ট্র্যাপ'
+                src: twoPairEarbudsImg,
+                title: 'একই চার্জিং কেসে In-Ear ও Ear-Clip দুই স্টাইলের ইয়ারবাড',
+                badge: '৪টি ইয়ারবাড সেট'
               },
               {
-                src: grayWatchImg,
-                title: 'গ্রে স্ট্র্যাপ চার্লস ডেলন কালার চেঞ্জিং ডায়াল ওয়াচ',
-                badge: 'গ্রে স্ট্র্যাপ'
+                src: blackEarbudsImg,
+                title: 'প্রিমিয়াম ব্ল্যাক কালার এডিশন — চমৎকার সাউন্ড ও লুক',
+                badge: 'ব্ল্যাক ভ্যারিয়েন্ট'
               },
               {
-                src: watchBlackSplashImg,
-                title: 'আলোর প্রতিফলনে ডায়ালে লুকিয়ে থাকা রঙের ম্যাজিক',
-                badge: 'ম্যাজিকাল ডায়াল'
-              },
-              {
-                src: watchBlueSplashImg,
-                title: 'ক্যাজুয়াল ও ফর্মাল সব স্টাইলের সাথে মানানসই লুক',
-                badge: 'স্টাইলিশ লুক'
-              },
-              {
-                src: watchColorSplashImg,
-                title: 'নিজের জন্য কিংবা প্রিয়জনকে উপহার দেওয়ার সেরা পছন্দ',
-                badge: 'কালার রিফ্লেকশন'
+                src: whiteEarbudsImg,
+                title: 'আকর্ষণীয় হোয়াইট কালার এডিশন — স্মার্ট ও স্টাইলিশ',
+                badge: 'হোয়াইট ভ্যারিয়েন্ট'
               }
             ].map((item, index) => (
               <div
@@ -610,7 +613,7 @@ export default function LandingPage() {
 
 
       {/* ==================================================
-          FEATURE SECTION (6 Features - Title Only)
+          FEATURE SECTION (6 Features - Title Only / Badges)
           ================================================== */}
       <section id="features" className="py-10 md:py-14 border-t border-slate-200/80 bg-[#F8FAFC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -620,19 +623,19 @@ export default function LandingPage() {
               প্রিমিয়াম ফিচারসমূহ
             </span>
             <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#0F172A]">
-              যে কারণে ঘড়িটি আলাদা
+              কেন Q10 Earbuds?
             </h2>
             <div className="small-design-line" />
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-4">
             {/* Feature 01 */}
             <div className="p-3.5 sm:p-5 rounded-2xl light-card text-center flex flex-col items-center justify-center group hover:border-sky-300">
               <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-sky-50 text-[#0284C7] flex items-center justify-center mb-2.5 sm:mb-3 border border-sky-100 group-hover:scale-110 transition-transform">
-                <LuPalette size={22} className="sm:w-6 sm:h-6" />
+                <LuHeadphones size={22} className="sm:w-6 sm:h-6" />
               </div>
               <h3 className="text-xs sm:text-sm md:text-base font-bold text-[#0F172A] leading-snug">
-                রঙ বদলানো ডায়াল
+                এক বক্সে ৪টি ইয়ারবাড
               </h3>
             </div>
 
@@ -642,47 +645,37 @@ export default function LandingPage() {
                 <LuSparkles size={22} className="sm:w-6 sm:h-6" />
               </div>
               <h3 className="text-xs sm:text-sm md:text-base font-bold text-[#0F172A] leading-snug">
-                সময়ের সাথে গ্রেডিয়েন্ট কালার
+                দুই ধরনের ডিজাইন
               </h3>
             </div>
 
             {/* Feature 03 */}
             <div className="p-3.5 sm:p-5 rounded-2xl light-card text-center flex flex-col items-center justify-center group hover:border-indigo-300">
               <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-indigo-50 text-[#4F46E5] flex items-center justify-center mb-2.5 sm:mb-3 border border-indigo-100 group-hover:scale-110 transition-transform">
-                <LuClock size={22} className="sm:w-6 sm:h-6" />
+                <LuBatteryCharging size={22} className="sm:w-6 sm:h-6" />
               </div>
               <h3 className="text-xs sm:text-sm md:text-base font-bold text-[#0F172A] leading-snug">
-                স্পষ্ট সময় দেখা
+                ডিজিটাল LED ডিসপ্লে
               </h3>
             </div>
 
             {/* Feature 04 */}
             <div className="p-3.5 sm:p-5 rounded-2xl light-card text-center flex flex-col items-center justify-center group hover:border-emerald-300">
               <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-emerald-50 text-[#059669] flex items-center justify-center mb-2.5 sm:mb-3 border border-emerald-100 group-hover:scale-110 transition-transform">
-                <LuShieldCheck size={22} className="sm:w-6 sm:h-6" />
+                <LuBluetooth size={22} className="sm:w-6 sm:h-6" />
               </div>
               <h3 className="text-xs sm:text-sm md:text-base font-bold text-[#0F172A] leading-snug">
-                নরম সিলিকন স্ট্র্যাপ
+                Bluetooth 5.4
               </h3>
             </div>
 
             {/* Feature 05 */}
-            <div className="p-3.5 sm:p-5 rounded-2xl light-card text-center flex flex-col items-center justify-center group hover:border-amber-300">
-              <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-amber-50 text-[#D97706] flex items-center justify-center mb-2.5 sm:mb-3 border border-amber-100 group-hover:scale-110 transition-transform">
-                <LuUsers size={22} className="sm:w-6 sm:h-6" />
-              </div>
-              <h3 className="text-xs sm:text-sm md:text-base font-bold text-[#0F172A] leading-snug">
-                ইউনিসেক্স ডিজাইন
-              </h3>
-            </div>
-
-            {/* Feature 06 */}
             <div className="p-3.5 sm:p-5 rounded-2xl light-card text-center flex flex-col items-center justify-center group hover:border-cyan-300">
               <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-cyan-50 text-[#0891B2] flex items-center justify-center mb-2.5 sm:mb-3 border border-cyan-100 group-hover:scale-110 transition-transform">
                 <LuDroplets size={22} className="sm:w-6 sm:h-6" />
               </div>
               <h3 className="text-xs sm:text-sm md:text-base font-bold text-[#0F172A] leading-snug">
-                ওয়াটার রেসিস্ট্যান্ট
+                IPX4 সুবিধা
               </h3>
             </div>
           </div>
@@ -695,9 +688,9 @@ export default function LandingPage() {
 
 
       {/* ==================================================
-          DELIVERY PACKAGE & GIFT BOX
+          OFFER SECTION & USAGE STORY & DELIVERY PACKAGE
           ================================================== */}
-      <section id="gift" className="py-10 md:py-14 bg-[#F8FAFC] border-t border-slate-200/80 scroll-mt-10">
+      <section id="offer" className="py-10 md:py-14 bg-[#F8FAFC] border-t border-slate-200/80 scroll-mt-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Main Card Box */}
@@ -705,20 +698,32 @@ export default function LandingPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
-              {/* Left Side: Gift & Self Purchase Story + Pricing + CTA */}
+              {/* Left Side: Offer Story + Design / Usage Details + CTA */}
               <div className="lg:col-span-7 text-center lg:text-left">
                 <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-sky-100 border border-sky-300 text-[#0284C7] text-xs font-bold uppercase tracking-wider mb-4 sm:mb-4.5">
-                  <LuGift size={14} />
-                  <span>উপহারের জন্য চমৎকার পছন্দ</span>
+                  <LuHeadphones size={14} />
+                  <span>আপনার পছন্দ, আপনার স্টাইল</span>
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0F172A] mb-3 tracking-tight leading-snug">
-                  নিজের জন্য, কিংবা প্রিয় কারও জন্য
+                  এক বক্সে দুই স্টাইল—পছন্দটা আপনার
                 </h3>
 
-                <p className="text-sm sm:text-base md:text-lg text-[#475569] max-w-xl mx-auto lg:mx-0 mb-6 leading-relaxed font-normal">
-                  বিশেষ কাউকে খুশি করতে সবসময় বড় কিছু প্রয়োজন হয় না। আলোর প্রতিফলনে রঙ বদলানো একটি সুন্দর ও স্টাইলিশ ঘড়িও হতে পারে মনে রাখার মতো একটি সেরা উপহার।
+                <p className="text-sm sm:text-base md:text-lg text-[#475569] max-w-xl mx-auto lg:mx-0 mb-4 leading-relaxed font-normal">
+                  In-Ear হোক কিংবা Ear-Clip—একসাথে পাচ্ছেন দুই ধরনের ব্যবহারের সুবিধা।
                 </p>
+
+                {/* In-Ear vs Ear-Clip Usage Highlights */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 text-left">
+                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                    <span className="font-bold text-xs sm:text-sm text-[#0284C7] block mb-1">In-Ear স্টাইল</span>
+                    <p className="text-xs text-[#475569] leading-relaxed">দৈনন্দিন গান শোনা, ভিডিও দেখা কিংবা সাধারণ ব্যবহারের জন্য আরামদায়ক In-Ear ডিজাইন।</p>
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                    <span className="font-bold text-xs sm:text-sm text-[#0284C7] block mb-1">Ear-Clip স্টাইল</span>
+                    <p className="text-xs text-[#475569] leading-relaxed">আধুনিক Ear-Clip ডিজাইনটি হাঁটা, জিম বা দৈনন্দিন চলাফেরায় ব্যবহারের জন্য উপযোগী।</p>
+                  </div>
+                </div>
 
                 {/* Action CTA */}
                 <div>
@@ -726,9 +731,12 @@ export default function LandingPage() {
                     onClick={() => scrollToSection('order-form')}
                     className="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-[#0284C7] to-[#2563EB] text-white font-extrabold text-base sm:text-lg shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
                   >
-                    <LuGift size={21} />
-                    <span>উপহার দিতে অর্ডার করুন</span>
+                    <LuShoppingBag size={21} />
+                    <span>এখনই অর্ডার করুন</span>
                   </button>
+                  <p className="text-xs text-[#64748B] mt-2.5">
+                    সারা বাংলাদেশে ক্যাশ অন ডেলিভারি
+                  </p>
                 </div>
               </div>
 
@@ -745,7 +753,7 @@ export default function LandingPage() {
                       <h4 className="text-lg sm:text-xl font-bold text-[#0F172A]">
                         ডেলিভারিতে যা যা পাচ্ছেনঃ
                       </h4>
-                      <p className="text-xs text-[#64748B]">অরিজিনাল প্যাকেজ বক্স সেট</p>
+                      <p className="text-xs text-[#64748B]">অরিজিনাল কমপ্লিট বক্স প্যাকেজ</p>
                     </div>
                   </div>
 
@@ -754,13 +762,19 @@ export default function LandingPage() {
                     <li className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-2xs">
                       <LuCircleCheck className="text-[#0284C7] shrink-0" size={19} />
                       <span className="text-sm sm:text-base font-bold text-[#0F172A]">
-                        চার্লস ডেলন কালার চেঞ্জিং ওয়াচ
+                        Q10 ইয়ারবাডস (৪টি ইয়ারবাড + কেস)
                       </span>
                     </li>
                     <li className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-2xs">
                       <LuCircleCheck className="text-[#0284C7] shrink-0" size={19} />
                       <span className="text-sm sm:text-base font-bold text-[#0F172A]">
-                        আকর্ষণীয় অফিশিয়াল বক্স প্যাকেজিং
+                        Type-C ফাস্ট চার্জিং কেবল
+                      </span>
+                    </li>
+                    <li className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-2xs">
+                      <LuCircleCheck className="text-[#0284C7] shrink-0" size={19} />
+                      <span className="text-sm sm:text-base font-bold text-[#0F172A]">
+                        অরিজিনাল অফিশিয়াল বক্স প্যাকেজিং
                       </span>
                     </li>
                     <li className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 shadow-2xs">
@@ -774,7 +788,7 @@ export default function LandingPage() {
                   {/* Note box */}
                   <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-center text-xs sm:text-sm text-emerald-800 font-bold flex items-center justify-center gap-2">
                     <LuShieldCheck size={17} className="text-emerald-600 shrink-0" />
-                    <span>note: পণ্য হাতে পেয়ে টাকা দিবেন</span>
+                    <span>note: পণ্য হাতে পেয়ে চেক করে টাকা দিবেন</span>
                   </div>
 
                 </div>
@@ -798,7 +812,7 @@ export default function LandingPage() {
               সহজ ও দ্রুত অর্ডার
             </span>
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-[#0F172A] mb-1.5 sm:mb-2 tracking-tight">
-              আপনার ঘড়িটি অর্ডার করুন
+              আপনার ইয়ারবাডস অর্ডার করুন
             </h2>
             <p className="text-xs sm:text-base text-[#475569] font-normal max-w-lg mx-auto">
               ক্যাশ অন ডেলিভারি — পণ্য হাতে পেয়ে চেক করে সম্পূর্ণ মূল্য পরিশোধ করবেন
@@ -878,68 +892,7 @@ export default function LandingPage() {
                 )}
               </div>
 
-              {/* Color Variant Radio Select (3 Colors) */}
-              <div>
-                <label className="block text-xs sm:text-sm font-bold text-[#0F172A] mb-2 flex items-center gap-1.5 sm:gap-2">
-                  <LuPalette className="text-[#0284C7]" size={16} />
-                  <span>পছন্দের কালার নির্বাচন করুন</span>
-                </label>
-                <div className="grid grid-cols-3 gap-1.5 sm:gap-3">
-                  {/* Black */}
-                  <label className={`p-2 sm:p-3.5 rounded-xl border-2 flex items-center justify-between cursor-pointer transition-all ${orderForm.variant.includes('ব্ল্যাক')
-                    ? 'bg-sky-50 border-[#0284C7] text-[#0F172A] shadow-xs'
-                    : 'bg-white border-slate-200 text-[#475569]'
-                    }`}>
-                    <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
-                      <input
-                        type="radio"
-                        name="colorVariant"
-                        checked={orderForm.variant.includes('ব্ল্যাক')}
-                        onChange={() => setOrderForm({ ...orderForm, variant: 'ব্ল্যাক (Black)' })}
-                        className="accent-[#0284C7] shrink-0"
-                      />
-                      <span className="font-semibold text-xs sm:text-sm truncate">ব্ল্যাক</span>
-                    </div>
-                    <div className="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full bg-slate-900 border border-white shrink-0 ml-1" />
-                  </label>
 
-                  {/* Blue */}
-                  <label className={`p-2 sm:p-3.5 rounded-xl border-2 flex items-center justify-between cursor-pointer transition-all ${orderForm.variant.includes('ব্লু')
-                    ? 'bg-sky-50 border-[#0284C7] text-[#0F172A] shadow-xs'
-                    : 'bg-white border-slate-200 text-[#475569]'
-                    }`}>
-                    <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
-                      <input
-                        type="radio"
-                        name="colorVariant"
-                        checked={orderForm.variant.includes('ব্লু')}
-                        onChange={() => setOrderForm({ ...orderForm, variant: 'ব্লু (Blue)' })}
-                        className="accent-[#0284C7] shrink-0"
-                      />
-                      <span className="font-semibold text-xs sm:text-sm truncate">ব্লু</span>
-                    </div>
-                    <div className="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full bg-blue-600 border border-white shrink-0 ml-1" />
-                  </label>
-
-                  {/* Gray */}
-                  <label className={`p-2 sm:p-3.5 rounded-xl border-2 flex items-center justify-between cursor-pointer transition-all ${orderForm.variant.includes('গ্রে')
-                    ? 'bg-sky-50 border-[#0284C7] text-[#0F172A] shadow-xs'
-                    : 'bg-white border-slate-200 text-[#475569]'
-                    }`}>
-                    <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
-                      <input
-                        type="radio"
-                        name="colorVariant"
-                        checked={orderForm.variant.includes('গ্রে')}
-                        onChange={() => setOrderForm({ ...orderForm, variant: 'গ্রে (Gray)' })}
-                        className="accent-[#0284C7] shrink-0"
-                      />
-                      <span className="font-semibold text-xs sm:text-sm truncate">গ্রে</span>
-                    </div>
-                    <div className="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full bg-slate-500 border border-white shrink-0 ml-1" />
-                  </label>
-                </div>
-              </div>
 
               {/* Quantity Selector */}
               <div>
@@ -982,53 +935,10 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              {/* Delivery Zone Selector */}
-              <div>
-                <label className="block text-xs sm:text-sm font-bold text-[#0F172A] mb-2 flex items-center gap-1.5 sm:gap-2">
-                  <LuTruck className="text-[#0284C7]" size={16} />
-                  <span>ডেলিভারি এলাকা নির্বাচন করুন</span>
-                </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                  <label className={`p-2.5 sm:p-3.5 rounded-xl border-2 flex items-center justify-between cursor-pointer transition-all ${orderForm.deliveryZone === 'dhaka_outside'
-                    ? 'bg-sky-50 border-[#0284C7] text-[#0F172A] shadow-xs'
-                    : 'bg-white border-slate-200 text-[#475569]'
-                    }`}>
-                    <div className="flex items-center gap-2 sm:gap-3">
-                      <input
-                        type="radio"
-                        name="deliveryZone"
-                        checked={orderForm.deliveryZone === 'dhaka_outside'}
-                        onChange={() => setOrderForm({ ...orderForm, deliveryZone: 'dhaka_outside' })}
-                        className="accent-[#0284C7]"
-                      />
-                      <span className="font-semibold text-xs sm:text-sm">ঢাকা সিটির বাইরে</span>
-                    </div>
-                    <span className="font-num font-bold text-xs sm:text-sm text-[#0284C7]">৳ ১৩০</span>
-                  </label>
-
-                  <label className={`p-2.5 sm:p-3.5 rounded-xl border-2 flex items-center justify-between cursor-pointer transition-all ${orderForm.deliveryZone === 'dhaka_inside'
-                    ? 'bg-sky-50 border-[#0284C7] text-[#0F172A] shadow-xs'
-                    : 'bg-white border-slate-200 text-[#475569]'
-                    }`}>
-                    <div className="flex items-center gap-2 sm:gap-3">
-                      <input
-                        type="radio"
-                        name="deliveryZone"
-                        checked={orderForm.deliveryZone === 'dhaka_inside'}
-                        onChange={() => setOrderForm({ ...orderForm, deliveryZone: 'dhaka_inside' })}
-                        className="accent-[#0284C7]"
-                      />
-                      <span className="font-semibold text-xs sm:text-sm">ঢাকা সিটির ভিতরে</span>
-                    </div>
-                    <span className="font-num font-bold text-xs sm:text-sm text-[#0284C7]">৳ ৭০</span>
-                  </label>
-                </div>
-              </div>
-
               {/* Live Order Bill Breakdown */}
               <div className="p-3 sm:p-5 rounded-xl sm:rounded-2xl bg-white border border-slate-200 space-y-2 sm:space-y-2.5 text-xs sm:text-sm">
                 <div className="flex justify-between items-center text-[#475569]">
-                  <span>ঘড়ির মূল্য ({orderForm.quantity.toLocaleString('bn-BD')} টি)</span>
+                  <span>ইয়ারবাডস মূল্য ({orderForm.quantity.toLocaleString('bn-BD')} টি)</span>
                   <div className="flex items-center gap-1.5 sm:gap-2 font-num">
                     <span className="text-[#0F172A] font-bold">৳ {subtotal.toLocaleString('bn-BD')}</span>
                     <span className="text-[10px] sm:text-xs text-[#94A3B8] line-through font-semibold">
@@ -1037,14 +947,9 @@ export default function LandingPage() {
                   </div>
                 </div>
 
-                <div className="flex justify-between text-[#475569]">
+                <div className="flex justify-between items-center text-[#475569]">
                   <span>ডেলিভারি চার্জ</span>
-                  <span className="font-num text-[#0F172A] font-bold">৳ {deliveryCharge.toLocaleString('bn-BD')}</span>
-                </div>
-
-                <div className="flex justify-between text-emerald-600 text-xs sm:text-sm font-bold">
-                  <span>মোট সাশ্রয়</span>
-                  <span className="font-num">- ৳ {totalSavings.toLocaleString('bn-BD')}</span>
+                  <span className="text-emerald-600 font-bold bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded text-xs sm:text-sm">সম্পূর্ণ ফ্রি (৳ ০)</span>
                 </div>
 
                 <div className="flex justify-between text-sm sm:text-lg font-black text-[#0F172A] pt-2 sm:pt-2.5 border-t border-slate-200">
@@ -1144,12 +1049,12 @@ export default function LandingPage() {
           ================================================== */}
       <section className="py-14 md:py-20 text-center relative overflow-hidden bg-white border-t border-slate-200/80">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <h2 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#0F172A] leading-tight mb-4">
-            সাধারণ ঘড়ির ভিড়ে <br className="hidden sm:inline" />
-            <span className="text-[#0284C7]">আপনার লুক হোক আলাদা</span>
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#0F172A] leading-tight mb-4">
+            এক বক্সে দুই স্টাইল— <br className="hidden sm:inline" />
+            <span className="text-[#0284C7]">আপনার পছন্দ কোনটি?</span>
           </h2>
           <p className="text-base sm:text-lg text-[#475569] max-w-xl mx-auto mb-6 font-normal">
-            আলোর প্রতিফলনে বদলে যাওয়া আকর্ষণীয় ডায়াল—আপনার প্রতিদিনের স্টাইলে যোগ করুক নতুন মাত্রা।
+            In-Ear হোক কিংবা Ear-Clip—Q10 Earbuds-এ থাকছে দুটিরই সুবিধা।
           </p>
           <div className="small-design-line" />
           <button
@@ -1172,13 +1077,13 @@ export default function LandingPage() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <div className="font-en text-base font-extrabold text-[#0F172A] tracking-wider mb-0.5">
-                CHARLES DELON
+                Q10 EARBUDS
               </div>
-              <p className="text-xs text-[#64748B] font-bn font-medium">কালার চেঞ্জিং ডায়াল ঘড়ি</p>
+              <p className="text-xs text-[#64748B] font-bn font-medium">হাই-ফাই স্পোর্টস ইয়ারবাডস</p>
             </div>
 
             <a
-              href="https://wa.me/8801746867350?text=Hello%2C%20I%20want%20to%20know%20about%20Charles%20Delon%20Color-Changing%20Watch"
+              href="https://wa.me/8801746867350?text=Hello%2C%20I%20want%20to%20know%20about%20Q10%20HiFi%20Stereo%20Sports%20Earbuds"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-emerald-50 border border-emerald-300 hover:bg-emerald-100 text-emerald-700 transition-colors cursor-pointer"
@@ -1199,8 +1104,8 @@ export default function LandingPage() {
               <button onClick={() => scrollToSection('features')} className="hover:text-[#0284C7] transition-colors cursor-pointer">
                 ফিচার্স
               </button>
-              <button onClick={() => scrollToSection('gift')} className="hover:text-[#0284C7] transition-colors cursor-pointer">
-                উপহার দিন
+              <button onClick={() => scrollToSection('offer')} className="hover:text-[#0284C7] transition-colors cursor-pointer">
+                স্পেশাল অফার
               </button>
               <button onClick={() => scrollToSection('order-form')} className="hover:text-[#0284C7] transition-colors cursor-pointer">
                 অর্ডার ফর্ম
@@ -1245,8 +1150,8 @@ export default function LandingPage() {
       >
         <div className="flex items-center justify-between gap-3">
           <div>
-            <span className="text-[10px] font-bold text-emerald-600 block">৪০০ টাকা ছাড়</span>
-            <span className="font-num text-xl font-black text-[#0284C7]">৳ ৮৯০</span>
+            <span className="text-[11px] font-bold text-emerald-600 block">ডেলিভারি চার্জ ফ্রি</span>
+            <span className="font-num text-xl font-black text-[#0284C7]">৳ ৯৯০</span>
           </div>
           <button
             onClick={() => scrollToSection('order-form')}
